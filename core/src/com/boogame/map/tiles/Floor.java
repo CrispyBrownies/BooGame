@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Floor {
 
     private final Texture grassTileSetSheet = new Texture(Gdx.files.internal("Map/TX Tileset Grass.png"));
-    private TextureRegion grass1;
-    private TextureRegion grass2;
+    private ArrayList<TextureRegion> grass;
+    private ArrayList<TextureRegion> flowers;
 
     private ArrayList<TextureRegion> stones;
     private ArrayList<TextureRegion> stonesPath;
@@ -21,13 +21,35 @@ public class Floor {
 
     private void splitTexture() {
         splitGrass();
+        splitFlowers();
         splitStones();
         splitStonesPath();
     }
 
     private void splitGrass() {
-        grass1 = new TextureRegion(grassTileSetSheet,0, 0, 128,128);
-        grass2 = new TextureRegion(grassTileSetSheet, 128, 0, 128, 128);
+        TextureRegion grassRegion = new TextureRegion(grassTileSetSheet,0, 0, 128,128);
+        TextureRegion[][] tmp = TextureRegion.split(grassRegion.getTexture(),
+                grassRegion.getRegionWidth() / 2,
+                grassRegion.getRegionHeight() / 2);
+
+        for (int i=0; i<2; i++) {
+            for (int j=0; j<2; j++) {
+                grass.add(tmp[i][j]);
+            }
+        }
+    }
+
+    private void splitFlowers() {
+        TextureRegion flowerRegion = new TextureRegion(grassTileSetSheet, 128, 0, 128, 128);
+        TextureRegion[][] tmp = TextureRegion.split(flowerRegion.getTexture(),
+                flowerRegion.getRegionWidth() / 2,
+                flowerRegion.getRegionHeight() / 2);
+
+        for (int i=0; i<2; i++) {
+            for (int j=0; j<2; j++) {
+                flowers.add(tmp[i][j]);
+            }
+        }
     }
 
     private void splitStones() {
@@ -70,12 +92,12 @@ public class Floor {
         }
     }
 
-    public TextureRegion getGrass1() {
-        return grass1;
+    public ArrayList<TextureRegion> getGrass() {
+        return grass;
     }
 
-    public TextureRegion getGrass2() {
-        return grass2;
+    public ArrayList<TextureRegion> getFlowers() {
+        return flowers;
     }
 
     public ArrayList<TextureRegion> getStones() {

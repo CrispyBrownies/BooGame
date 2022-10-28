@@ -29,15 +29,15 @@ public class MyGdxGame extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		tilesetGrassTexture = new Texture(Gdx.files.internal("Map/TX Tileset Grass.png"));
+		tilesetGrassTexture = new Texture(Gdx.files.internal("Map/test_background.jpg"));
 
 		// create player object
 		player = new Oswald();
 
 		// background
 		tile = new Rectangle();
-		tile.height = 256;
-		tile.width = 256;
+		tile.height = 1920;
+		tile.width = 1080;
 		tile.x = 1920/2 - tile.width/2;
 		tile.y = 1080/2 - tile.height/2;
 

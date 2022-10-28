@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.boogame.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -25,13 +25,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		tilesetGrassTexture = new Texture(Gdx.files.internal("Map/TX Tileset Grass.png"));
-		playerTexture = new Texture(Gdx.files.internal("Map/TX Player.png"));
-
+		playerTexture = new Texture(Gdx.files.internal("Characters/Oswald/TX Player_test.png"));
 
 		// create player object
 		player = new Rectangle();
-		player.width = 128;
-		player.height = 192;
+		player.width = 21;
+		player.height = 44;
 		player.x = 1920/2 - player.width/2;
 		player.y = 1080/2 - player.height/2;
 

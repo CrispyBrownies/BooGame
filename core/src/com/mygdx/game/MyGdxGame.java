@@ -7,12 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import map.tiles.Floor;
 
 public class MyGdxGame extends ApplicationAdapter {
 	// textures
 	private Texture tilesetGrassTexture;
 	private Texture playerTexture;
-
 	// camera
 	private OrthographicCamera camera;
 
@@ -21,12 +21,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	private SpriteBatch batch;
 
+	private Floor grass;
 	
 	@Override
 	public void create () {
 		tilesetGrassTexture = new Texture(Gdx.files.internal("Map/TX Tileset Grass.png"));
 		playerTexture = new Texture(Gdx.files.internal("Map/TX Player.png"));
 
+		grass = new Floor();
 
 		// create player object
 		player = new Rectangle();
@@ -59,7 +61,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.combined);
 
 		batch.begin();
-		batch.draw(tilesetGrassTexture, tile.x, tile.y);
+		batch.draw(grass.getGrass2(), tile.x, tile.y);
 		batch.draw(playerTexture, player.x, player.y);
 
 		batch.end();

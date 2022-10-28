@@ -1,5 +1,6 @@
 package com.boogame.characters;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.boogame.game.Helpers;
 import java.util.Vector;
@@ -8,9 +9,12 @@ public class Character {
 
     protected Vector2 position;
     protected Vector2 velocity;
+    protected Vector2 size;
     protected float health;
     protected float sizeScale;
     protected boolean alive;
+    protected Texture characterTexture;
+    protected float speed;
 
     private Helpers helpers;
 
@@ -21,6 +25,7 @@ public class Character {
     }
 
     public void move() {
+        System.out.println(velocity);
         position.add(velocity);
     }
 
@@ -29,4 +34,19 @@ public class Character {
         health = helpers.capValue(0, 100, health);
     }
 
+    public Texture getCharacterTexture() {
+        return characterTexture;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
 }

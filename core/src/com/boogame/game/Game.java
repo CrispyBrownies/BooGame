@@ -5,27 +5,31 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.boogame.characters.Character;
+import com.boogame.characters.Oswald;
 import org.w3c.dom.Text;
 
 public class Game extends ApplicationAdapter {
 
     private boolean gameOver = false;
+    private Vector2 canvasSize = new Vector2(1920, 1080);
 
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    private Rectangle player;
+
+    private Character player = new Character();
+    private Rectangle background;
 
     public void create() {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1920, 1080);
         batch = new SpriteBatch();
 
-        player = new Rectangle();
-        player.width = 128;
-        player.height = 192;
-        player.x = 1920/2 - player.width/2;
-        player.y = 1080/2 - player.height/2;
+        player = new Oswald();
+        background.height = 1920;
+        background.height = 1080;
     }
 
     public void render () {

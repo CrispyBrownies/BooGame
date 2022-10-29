@@ -1,6 +1,7 @@
 package com.boogame.characters;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.boogame.game.Helpers;
 import java.util.Vector;
@@ -15,6 +16,7 @@ public class Character {
     protected boolean alive;
     protected Texture characterTexture;
     protected float speed;
+    protected Rectangle hitbox;
 
     private Helpers helpers;
 
@@ -25,7 +27,7 @@ public class Character {
     }
 
     public void move() {
-        System.out.println(velocity);
+//        System.out.println(velocity);
         position.add(velocity);
     }
 
@@ -48,5 +50,9 @@ public class Character {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public Vector2 getSize() {
+        return size;
     }
 }

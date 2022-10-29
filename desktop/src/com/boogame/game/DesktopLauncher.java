@@ -9,6 +9,6 @@ public class DesktopLauncher {
 		config.setTitle("Boo");
 		config.setWindowedMode(1920, 1080);
 		config.setForegroundFPS(60);
-		new Lwjgl3Application(new MyGdxGame(), config);
+		new Lwjgl3Application(new Game(), config);
 	}
 }

@@ -17,7 +17,7 @@ public class Oswald extends Character{
         this.speed = 1;
         this.size = new Vector2(21, 44);
         this.sizeScale = 1;
-        this.characterTexture = new Texture(Gdx.files.internal("Characters/Oswald/TX Player_test.png"));
+        this.characterTexture = new Texture(Gdx.files.internal("Characters/Oswald/guru.png"));
         this.hitbox = new Rectangle(this.position.x, this.position.y, this.size.x, this.size.y);
     }
 

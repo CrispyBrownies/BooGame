@@ -7,8 +7,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle("Boo");
-		config.setWindowedMode(1920, 1280);
+		config.setWindowedMode(30*32, 20*32);
 		config.setForegroundFPS(60);
-		new Lwjgl3Application(new Game(), config);
+		new Lwjgl3Application(new GameHarrisMapTest(), config);
 	}
 }

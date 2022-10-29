@@ -9,6 +9,6 @@ public class DesktopLauncher {
 		config.setTitle("Boo");
 		config.setWindowedMode(1920, 1280);
 		config.setForegroundFPS(60);
-		new Lwjgl3Application(new GameHarrisMapTest(), config);
+		new Lwjgl3Application(new Game(), config);
 	}
 }

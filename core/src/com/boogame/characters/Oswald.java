@@ -14,7 +14,7 @@ public class Oswald extends Character{
         this.health = 100;
         this.position = new Vector2(100, 100);
         this.velocity = new Vector2(0, 0);
-        this.speed = 1;
+        this.speed = 0.51f;
         this.size = new Vector2(21, 44);
         this.sizeScale = 1;
         this.characterTexture = new Texture(Gdx.files.internal("Characters/Oswald/guru.png"));

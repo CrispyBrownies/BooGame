@@ -10,9 +10,9 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player extends Sprite {
+public class Player extends Character {
     public Player(Texture playerTexture) {
-        super(playerTexture, 0, 0, playerTexture.getWidth(), playerTexture.getHeight());
+        super(playerTexture);
     }
 
     public void checkCollision(Vector2 oldPosition, MapObjects collisions) {

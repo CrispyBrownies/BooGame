@@ -1,12 +1,15 @@
 package com.boogame.characters;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.boogame.game.Helpers;
 import java.util.Vector;
 
-public class Character {
+public class Character extends Sprite {
 
     protected Vector2 position;
     protected Vector2 velocity;
@@ -17,8 +20,12 @@ public class Character {
     protected Texture characterTexture;
     protected float speed;
     protected Rectangle hitbox;
-
+    protected Animation<TextureRegion> walkAnimation;
     private Helpers helpers;
+
+    public Character(Texture texture) {
+        super(texture, 0, 0, texture.getWidth(), texture.getHeight());
+    }
 
     // Returns the intended ending position if move() is executed. Use this to check if next movement location is valid in game class.
     public Vector2 moveIntent() {
@@ -54,5 +61,9 @@ public class Character {
 
     public Vector2 getSize() {
         return size;
+    }
+
+    public Animation<TextureRegion> getWalkAnimation() {
+        return walkAnimation;
     }
 }

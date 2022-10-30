@@ -4,15 +4,14 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.boogame.characters.Player;
+import com.boogame.characters.Character;
+import com.boogame.characters.Ghost;
+import com.boogame.characters.Oswald;
 
 import java.util.ArrayList;
 
@@ -21,12 +20,12 @@ public class GameHarrisMapTest extends ApplicationAdapter {
 
     private MapObjects collisions;
     private OrthographicCamera camera;
-    private Texture playerTexture;
-    private Texture guruTexture;
+//    private Texture playerTexture;
+//    private Texture guruTexture;
     private SpriteBatch batch;
-    private Player player;
+    private ArrayList<Character> players = new ArrayList<>();
+    private ArrayList<Character> npcs = new ArrayList<>();
     // guru for testing purposes
-    private ArrayList<Sprite> npc;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
 
@@ -42,21 +41,25 @@ public class GameHarrisMapTest extends ApplicationAdapter {
         camera.zoom-=0.65f;
         camera.update();
 
-        playerTexture = new Texture(Gdx.files.internal("Characters/Oswald/TX Player_test.png"));
-        player = new Player(playerTexture);
-        player.setPosition(15, 80);
+//        playerTexture = new Texture(Gdx.files.internal("Characters/Oswald/TX Player_test.png"));
+        players.add(new Oswald(true));
+        players.get(0).setPosition(15, 80);
 
         // guru for testing purposes
-        guruTexture = new Texture(Gdx.files.internal("Map/halo.png"));
+//        guruTexture = new Texture(Gdx.files.internal("Map/halo.png"));
 
-        npc = new ArrayList<>();
-        npc.add(new Sprite(playerTexture));
-        npc.add(new Sprite(guruTexture));
-        npc.get(0).setPosition(60, 90);
-        Sprite halo = npc.get(1);
-//        npc.get(1).setPosition(15 ,100);
-        npc.get(1).setPosition(15-halo.getWidth()/2, 80-halo.getHeight()/2);
-        npc.get(1).scale(1.2f);
+//        npc = new ArrayList<>();
+        npcs.add(new Ghost(false));
+//        npcs.add(new Sprite(guruTexture));
+        npcs.get(0).setPosition(60, 90);
+
+//        npc.get()
+//        Sprite halo = npc.get(1);
+////        npc.get(1).setPosition(15 ,100);
+//        npc.get(1).setPosition(15-halo.getWidth()/2, 80-halo.getHeight()/2);
+////        npc.get(1).scale(1.5f);
+//        npc.get(1).scale(1.2f);
+
 
 
 //        player.setPosition(w/2-player.getWidth()/2, h/2-player.getHeight()/2);
@@ -66,15 +69,19 @@ public class GameHarrisMapTest extends ApplicationAdapter {
 //        tiledMapRenderer.addSprite(player);
 
         collisions = tiledMap.getLayers().get("Collisions").getObjects();
-        System.out.println(player.getBoundingRectangle());
+//        System.out.println(player.getBoundingRectangle());
 
 //        npc.sort((o1, o2)
 //                -> o1.getY().compareTo(
 //                o2.getY()));
 
-        for (Sprite s : npc) {
-            System.out.println(s.getY());
-        }
+//        for (Sprite s : npc) {
+//            System.out.println(s.getY());
+//        }
+
+//        Player player1 = new Player(guruTexture);
+//        player1
+
     }
 
     @Override
@@ -86,21 +93,19 @@ public class GameHarrisMapTest extends ApplicationAdapter {
 
         batch.setProjectionMatrix(camera.combined);
 
-        Vector2 oldPos = new Vector2(player.getX(), player.getY());
+//        Vector2 oldPos = new Vector2(players.get(0).getX(), players.get(0).getY());
         // moves player
-        player.inputMovement();
-        Sprite halo = npc.get(1);
-        npc.get(1).setPosition(player.getX()-halo.getWidth()/2 + player.getWidth()/2, player.getY()-halo.getHeight()/2 + player.getHeight()/2);
+        players.get(0).move();
+//        Sprite halo = npc.get(1);
+//        npc.get(1).setPosition(player.getX()-halo.getWidth()/2 + player.getWidth()/2, player.getY()-halo.getHeight()/2 + player.getHeight()/2);
         // moves player back to old pos if collides
-        player.checkCollision(oldPos, collisions);
+        players.get(0).checkCollision(collisions);
 
-        camera.position.set(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2, 0);
+        camera.position.set(players.get(0).getX()+ players.get(0).getWidth()/2, players.get(0).getY()+ players.get(0).getHeight()/2, 0);
         camera.update();
 
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
-
-
 
 
         batch.begin();
@@ -110,15 +115,15 @@ public class GameHarrisMapTest extends ApplicationAdapter {
         // loop through npcs, store index and position
 
 
-        if (player.getY() >= npc.get(0).getY()) {
-            player.draw(batch);
-            npc.get(0).draw(batch);
-        } else {
-            npc.get(0).draw(batch);
-            player.draw(batch);
-        }
-
-        npc.get(1).draw(batch);
+//        if (player.getY() >= npc.get(0).getY()) {
+//            player.draw(batch);
+//            npc.get(0).draw(batch);
+//        } else {
+//            npc.get(0).draw(batch);
+//            player.draw(batch);
+//        }
+        players.get(0).draw(batch);
+        npcs.get(0).draw(batch);
 
 //        player.draw(batch);
 //        guru.draw(batch);
@@ -128,7 +133,7 @@ public class GameHarrisMapTest extends ApplicationAdapter {
     @Override
     public void dispose() {
         tiledMap.dispose();
-        playerTexture.dispose();
+//        players.dispose();
         batch.dispose();
     }
 

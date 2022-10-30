@@ -1,7 +1,10 @@
 package com.boogame.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
+import com.boogame.characters.Character;
 
 public class Helpers {
 
@@ -23,16 +26,4 @@ public class Helpers {
         else return num;
     }
 
-    public Vector2 getCameraSize(Vector2 windowSize, Vector2 playerSize, float viewPercent) {
-        // Based off a 16x9 view ratio
-        float playerHeight = playerSize.y;
-        float viewScale = 1/viewPercent;
-        float cameraHeight = playerHeight * viewScale;
-
-        cameraHeight = capValue(Math.round(windowSize.y), 0, cameraHeight);
-
-        float cameraWidth = (float) ((16.0/9.0)*cameraHeight);
-
-        return new Vector2(Math.round(cameraWidth),Math.round(cameraHeight));
-    }
 }
